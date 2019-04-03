@@ -26,6 +26,16 @@ router.get(
   catchErrors(ctrlAdmin.authenticate),
   catchErrors(ctrlAdmin.allRents)
 );
+router.get(
+  '/admin/alltenants',
+  catchErrors(ctrlAdmin.authenticate),
+  catchErrors(ctrlAdmin.allTenants)
+);
+router.get(
+  '/admin/allassets',
+  catchErrors(ctrlUser.authenticate),
+  catchErrors(ctrlUser.allAssets)
+);
 
 // user routes
 router.get(

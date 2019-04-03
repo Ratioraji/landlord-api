@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Admin = mongoose.model('landlord');
 const Assets = mongoose.model('assets');
+const User = mongoose.model('user');
 const Rents = mongoose.model('rents');
 const jwt = require('jsonwebtoken');
 const SECRET = process.env.SECRET;
@@ -87,6 +88,26 @@ module.exports.allRents = async (req, res) => {
         });
     }
     sendJSONResponse(res, 200, {rents});
+}
+module.exports.allTenants = async (req, res) => {
+    const tenants = await User.find({});
+    if(!tenants) 
+    {
+        return sendJSONResponse(res, 204, {
+            message: 'No Tenant found'
+        });
+    }
+    sendJSONResponse(res, 200, {tenants});
+}
+module.exports.allAssets = async (req, res) => {
+    const assets = await Assets.find({});
+    if(!assets) 
+    {
+        return sendJSONResponse(res, 204, {
+            message: 'No Assets found'
+        });
+    }
+    sendJSONResponse(res, 200, {assets});
 }
 
 
